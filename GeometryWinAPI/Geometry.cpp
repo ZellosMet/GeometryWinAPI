@@ -1,46 +1,46 @@
-#include<windows.h>
+п»ї#include<windows.h>
 #include<tchar.h>
 #include<HeadGeometry.h>
 
-static TCHAR szWindowClass[] = _T("GeometryDesktopApp"); // Задание имени приложения
-static TCHAR szTitle[] = _T("Geometry"); // Текст заголовка окна
-LRESULT CALLBACK WndProc(_In_ HWND hWnd, _In_ UINT message, _In_ WPARAM wParam, _In_ LPARAM lParam); // Функция обработки процессов
+static TCHAR szWindowClass[] = _T("GeometryDesktopApp"); // Р—Р°РґР°РЅРёРµ РёРјРµРЅРё РїСЂРёР»РѕР¶РµРЅРёСЏ
+static TCHAR szTitle[] = _T("Geometry"); // РўРµРєСЃС‚ Р·Р°РіРѕР»РѕРІРєР° РѕРєРЅР°
+LRESULT CALLBACK WndProc(_In_ HWND hWnd, _In_ UINT message, _In_ WPARAM wParam, _In_ LPARAM lParam); // Р¤СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё РїСЂРѕС†РµСЃСЃРѕРІ
 
-int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCMDLine, _In_ int nCmdShow) //Точка входа WinAPI
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCMDLine, _In_ int nCmdShow) //РўРѕС‡РєР° РІС…РѕРґР° WinAPI
 {
 	
 	WNDCLASSEX wcex;
-	wcex.cbSize = sizeof(WNDCLASSEX); //Определяет размер структуры в байтах
-	wcex.style = CS_HREDRAW | CS_VREDRAW; //Задание стиля классов
-	wcex.lpfnWndProc = WndProc; //Указатель на процедуру окна
-	wcex.cbClsExtra = 0; //Выделение дополнительной памяти в байтах в соответствии со структурой окна 
-	wcex.cbWndExtra = 0; //Выделение дополнитеельной памяти в байтах после экземпляра окна
-	wcex.hInstance = hInstance; //Дескриптор экземпляра окна
-	wcex.hIcon = LoadIcon(wcex.hInstance, IDI_APPLICATION); //Значёк для окна
-	wcex.hCursor = LoadCursor(NULL, IDC_ARROW); //Курсор для окна
-	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); //Задание заливки окна
-	wcex.lpszMenuName = NULL; //Указание на меню окна(NULL - нет меню поумолчанию)
-	wcex.lpszClassName = szWindowClass; //Имя класса окна(не больше 256 символов)
-	wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION); //Дескриптор небольшого значка окна
+	wcex.cbSize = sizeof(WNDCLASSEX); //РћРїСЂРµРґРµР»СЏРµС‚ СЂР°Р·РјРµСЂ СЃС‚СЂСѓРєС‚СѓСЂС‹ РІ Р±Р°Р№С‚Р°С…
+	wcex.style = CS_HREDRAW | CS_VREDRAW; //Р—Р°РґР°РЅРёРµ СЃС‚РёР»СЏ РєР»Р°СЃСЃРѕРІ
+	wcex.lpfnWndProc = WndProc; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ РѕРєРЅР°
+	wcex.cbClsExtra = 0; //Р’С‹РґРµР»РµРЅРёРµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РїР°РјСЏС‚Рё РІ Р±Р°Р№С‚Р°С… РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃРѕ СЃС‚СЂСѓРєС‚СѓСЂРѕР№ РѕРєРЅР° 
+	wcex.cbWndExtra = 0; //Р’С‹РґРµР»РµРЅРёРµ РґРѕРїРѕР»РЅРёС‚РµРµР»СЊРЅРѕР№ РїР°РјСЏС‚Рё РІ Р±Р°Р№С‚Р°С… РїРѕСЃР»Рµ СЌРєР·РµРјРїР»СЏСЂР° РѕРєРЅР°
+	wcex.hInstance = hInstance; //Р”РµСЃРєСЂРёРїС‚РѕСЂ СЌРєР·РµРјРїР»СЏСЂР° РѕРєРЅР°
+	wcex.hIcon = LoadIcon(wcex.hInstance, IDI_APPLICATION); //Р—РЅР°С‡С‘Рє РґР»СЏ РѕРєРЅР°
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW); //РљСѓСЂСЃРѕСЂ РґР»СЏ РѕРєРЅР°
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); //Р—Р°РґР°РЅРёРµ Р·Р°Р»РёРІРєРё РѕРєРЅР°
+	wcex.lpszMenuName = NULL; //РЈРєР°Р·Р°РЅРёРµ РЅР° РјРµРЅСЋ РѕРєРЅР°(NULL - РЅРµС‚ РјРµРЅСЋ РїРѕСѓРјРѕР»С‡Р°РЅРёСЋ)
+	wcex.lpszClassName = szWindowClass; //РРјСЏ РєР»Р°СЃСЃР° РѕРєРЅР°(РЅРµ Р±РѕР»СЊС€Рµ 256 СЃРёРјРІРѕР»РѕРІ)
+	wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION); //Р”РµСЃРєСЂРёРїС‚РѕСЂ РЅРµР±РѕР»СЊС€РѕРіРѕ Р·РЅР°С‡РєР° РѕРєРЅР°
 
 	if (!RegisterClassExW(&wcex))
 	{
 		MessageBox(NULL, _T("Call to RegisterClassExW failed!"), _T("Windows Desktop Guided Tour"), NULL);
 		return 1;
 	}
-	//Создание окна
+	//РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
 	HWND hWnd = CreateWindowEx
 	(
-		WS_EX_OVERLAPPEDWINDOW, //Параметр расширенного стяли окна(не обязателен)
-		szWindowClass, //Имя приложения
-		szTitle, //Текст отображаемый в строке заголовка окна
-		WS_OVERLAPPEDWINDOW, //Тип создаваемого окна
-		CW_USEDEFAULT, //Начальная позиция окна по Х
-		CW_USEDEFAULT, //Начальная позиция по Y
-		1000, //Штрина окна
-		600, //Длина окна
-		NULL, //Родитель окна данного окна
-		NULL, //Строка меню окна( NULL - не имеет)
+		WS_EX_OVERLAPPEDWINDOW, //РџР°СЂР°РјРµС‚СЂ СЂР°СЃС€РёСЂРµРЅРЅРѕРіРѕ СЃС‚СЏР»Рё РѕРєРЅР°(РЅРµ РѕР±СЏР·Р°С‚РµР»РµРЅ)
+		szWindowClass, //РРјСЏ РїСЂРёР»РѕР¶РµРЅРёСЏ
+		szTitle, //РўРµРєСЃС‚ РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹Р№ РІ СЃС‚СЂРѕРєРµ Р·Р°РіРѕР»РѕРІРєР° РѕРєРЅР°
+		WS_OVERLAPPEDWINDOW, //РўРёРї СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°
+		CW_USEDEFAULT, //РќР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ РѕРєРЅР° РїРѕ РҐ
+		CW_USEDEFAULT, //РќР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ РїРѕ Y
+		1000, //РЁС‚СЂРёРЅР° РѕРєРЅР°
+		600, //Р”Р»РёРЅР° РѕРєРЅР°
+		NULL, //Р РѕРґРёС‚РµР»СЊ РѕРєРЅР° РґР°РЅРЅРѕРіРѕ РѕРєРЅР°
+		NULL, //РЎС‚СЂРѕРєР° РјРµРЅСЋ РѕРєРЅР°( NULL - РЅРµ РёРјРµРµС‚)
 		hInstance, 
 		NULL
 	);
@@ -70,13 +70,13 @@ LRESULT CALLBACK WndProc(_In_ HWND hWnd, _In_ UINT message, _In_ WPARAM wParam, 
 	Geometry::Circle circle(60, 1000, 1000, 5, Geometry::Color::red);
 	switch (message)
 	{
-	case WM_PAINT: // Кейс перерисовки окна при перемещении или изменении положения относительно других окан
+	case WM_PAINT: // РљРµР№СЃ РїРµСЂРµСЂРёСЃРѕРІРєРё РѕРєРЅР° РїСЂРё РїРµСЂРµРјРµС‰РµРЅРёРё РёР»Рё РёР·РјРµРЅРµРЅРёРё РїРѕР»РѕР¶РµРЅРёСЏ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РґСЂСѓРіРёС… РѕРєР°РЅ
 		hdc = BeginPaint(hWnd, &ps);
 		//TextOut(hdc, 5, 5, greeting, _tcslen(greeting));
 		circle.get_draw(hWnd);
 		EndPaint(hWnd, &ps);
 		break;
-	case WM_DESTROY: //Кейс для закрытия окна
+	case WM_DESTROY: //РљРµР№СЃ РґР»СЏ Р·Р°РєСЂС‹С‚РёСЏ РѕРєРЅР°
 		PostQuitMessage(0);
 		break;
 	default:
