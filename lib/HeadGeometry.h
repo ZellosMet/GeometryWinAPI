@@ -22,10 +22,10 @@ namespace Geometry
 
 	class Shape
 	{
-		static const int MIN_START_X = 10;
-		static const int MIN_START_Y = 10;
-		static const int MAX_START_X = 500;
-		static const int MAX_START_Y = 400;
+		static const int MIN_START_X = 5;
+		static const int MIN_START_Y = 5;
+		static const int MAX_START_X = 1000;
+		static const int MAX_START_Y = 600;
 		static const int MIN_LINE_WIDTH = 5;
 		static const int MAX_LINE_WIDTH = 25;
 	protected:
@@ -74,7 +74,7 @@ namespace Geometry
 	class Circle : public Shape
 	{
 		static const int MIN_RADIUS = 4;
-		static const int MAX_RADIUS = 50;
+		static const int MAX_RADIUS = 300;
 		double radius;
 	public:
 		double get_radius()const;
@@ -88,6 +88,14 @@ namespace Geometry
 	};
 	class Triangle : public Shape
 	{
+		static const int MIN_SIDE1 = 4;
+		static const int MAX_SIDE1 = 300;
+		static const int MIN_SIDE2 = 4;
+		static const int MAX_SIDE2 = 300;
+		static const int MIN_SIDE3 = 4;
+		static const int MAX_SIDE3 = 300;
+		static const int MIN_ANGLE = 4;
+		static const int MAX_ANGLE = 179;
 	protected:
 		double side1;
 		double side2;

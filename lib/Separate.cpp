@@ -23,19 +23,19 @@
 	void Geometry::Shape::set_start_x(int start_x)
 	{
 		if (start_x < MIN_START_X) start_x = MIN_START_X;
-		if (start_x < MAX_START_X) start_x = MAX_START_X;
+		if (start_x > MAX_START_X) start_x = MAX_START_X;
 		this->start_x = start_x;
 	}
 	void Geometry::Shape::set_start_y(int start_y)
 	{
 		if (start_y < MIN_START_Y) start_y = MIN_START_Y;
-		if (start_y < MAX_START_Y) start_y = MAX_START_Y;
+		if (start_y > MAX_START_Y) start_y = MAX_START_Y;
 		this->start_y = start_y;
 	}
 	void Geometry::Shape::set_line_width(int line_width)
 	{
 		if (line_width < MIN_LINE_WIDTH) line_width = MIN_LINE_WIDTH;
-		if (line_width < MAX_LINE_WIDTH) line_width = MAX_LINE_WIDTH;
+		if (line_width > MAX_LINE_WIDTH) line_width = MAX_LINE_WIDTH;
 		this->line_width = line_width;
 	}
 	void Geometry::Shape::info()const
@@ -81,7 +81,6 @@
 	}
 	void Geometry::Rectangle::get_draw(_In_ HWND &hwnd)const
 	{
-		hwnd = GetDesktopWindow();
 		HDC hdc = GetDC(hwnd);
 		HPEN hPen = CreatePen(PS_SOLID, line_width, color);
 		HBRUSH hBrush = CreateSolidBrush(color);
@@ -129,7 +128,6 @@
 	}
 	void Geometry::Circle::get_draw(_In_ HWND &hwnd)const
 	{
-		hwnd = GetDesktopWindow();
 		HDC hdc = GetDC(hwnd);
 		HPEN hPen = CreatePen(PS_SOLID, line_width, color);
 		HBRUSH hBrush = CreateSolidBrush(color);
@@ -165,18 +163,26 @@
 	}
 	void Geometry::Triangle::set_side1(double side1)
 	{
+		if (side1 < MIN_SIDE1) side1 = MIN_SIDE1;
+		if (side1 > MAX_SIDE1) side1 = MAX_SIDE1;
 		this->side1 = side1;
 	}
 	void Geometry::Triangle::set_side2(double side2)
 	{
+		if (side2 < MIN_SIDE2) side2 = MIN_SIDE2;
+		if (side2 > MAX_SIDE2) side2 = MAX_SIDE2;
 		this->side2 = side2;
 	}
 	void Geometry::Triangle::set_side3(double side3)
 	{
+		if (side3 < MIN_SIDE3) side3 = MIN_SIDE3;
+		if (side3 > MAX_SIDE3) side3 = MAX_SIDE3;
 		this->side3 = side3;
 	}
 	void Geometry::Triangle::set_angle(double angle)
 	{
+		if (angle < MIN_ANGLE) angle = MIN_ANGLE;
+		if (angle > MAX_ANGLE) angle = MAX_ANGLE;
 		this->angle = angle;
 	}
 	Geometry::Triangle::Triangle(double side1, double side2, double angle, SHAPE_TAKE_PARAMETERSINT) : Shape(SHAPE_GIVE_PARAMETERSINT)
@@ -204,7 +210,6 @@
 	}
 	void Geometry::Triangle::get_draw(_In_ HWND &hwnd)const
 	{
-		hwnd = GetDesktopWindow();
 		HDC hdc = GetDC(hwnd);
 		HPEN hPen = CreatePen(PS_SOLID, 5, color);
 		HBRUSH hBrush = CreateSolidBrush(color);

@@ -67,7 +67,7 @@ LRESULT CALLBACK WndProc(_In_ HWND hWnd, _In_ UINT message, _In_ WPARAM wParam, 
 	PAINTSTRUCT ps;
 	HDC hdc;
 	TCHAR greeting[] = _T("Hello, Windows desktop!");
-	Geometry::Circle circle(60, 1000, 1000, 5, Geometry::Color::red);
+	Geometry::Circle circle(100, 700, 200, 5, Geometry::Color::red);
 	switch (message)
 	{
 	case WM_PAINT: // Кейс перерисовки окна при перемещении или изменении положения относительно других окан
